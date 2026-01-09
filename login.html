@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCTU E-Library Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <div class="university-logo">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="gctu-logo-img">
+                </div>
+                <div class="title-container">
+                    <h1 class="title">
+                        <span class="title-line">Welcome to</span>
+                        <span class="title-line">GCTU E-Library</span>
+                        <span class="title-line">Login Page</span>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Login Card -->
+        <main class="main-content">
+            <div class="login-card">
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" placeholder="School Email" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password" id="toggleLoginPassword" title="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="login-btn">
+                            Login
+                           
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="index.html">Register Now</a></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-divider"></div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/gctu_logo.jpg" alt="GCTU Logo" class="footer-logo-img">
+                </div>
+                
+                <!-- Copyright text -->
+                <div class="footer-text">
+                    <p> 2023 All Rights Reserved.Ghana Communication Technology University (GCTU)</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                <h2>Login Error</h2>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">Invalid email or password. Please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" id="closeErrorModal">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
