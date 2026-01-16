@@ -171,7 +171,7 @@
             <p>Welcome to the Ghana Communication Technology University E-Library System. Select an option below to get started.</p>
             
             <div class="landing-buttons">
-                <a href="dashboard.html" class="landing-btn btn-dashboard">
+                <a href="#" id="dashboard-link" class="landing-btn btn-dashboard">
                     <i class="fas fa-chart-line"></i>
                     Go to Dashboard
                 </a>
@@ -190,5 +190,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('dashboard-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const userRole = sessionStorage.getItem('userRole');
+
+            if (isLoggedIn === 'true') {
+                if (userRole === 'staff') {
+                    window.location.href = 'staff-dashboard.html';
+                } else {
+                    window.location.href = 'student-dashboard.html';
+                }
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const registrationForm = document.getElementById('registrationForm');
     const fullName = document.getElementById('fullName');
     const schoolEmail = document.getElementById('schoolEmail');
+    const userRole = document.getElementById('userRole');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
     const togglePassword = document.getElementById('togglePassword');
@@ -36,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
         validateEmail();
     });
 
+    userRole.addEventListener('change', function() {
+        validateRole();
+    });
+
     password.addEventListener('blur', function() {
         validatePassword();
     });
@@ -51,10 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validate all fields
         const isNameValid = validateFullName();
         const isEmailValid = validateEmail();
+        const isRoleValid = validateRole();
         const isPasswordValid = validatePassword();
         const isConfirmValid = validateConfirmPassword();
 
-        if (isNameValid && isEmailValid && isPasswordValid && isConfirmValid) {
+        if (isNameValid && isEmailValid && isRoleValid && isPasswordValid && isConfirmValid) {
             submitRegistration();
         }
     });
@@ -86,6 +92,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         } else {
             schoolEmail.parentElement.classList.remove('error');
+            errorElement.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validateRole() {
+        const value = userRole.value.trim();
+        const errorElement = document.getElementById('roleError');
+
+        if (!value) {
+            userRole.parentElement.classList.add('error');
+            errorElement.style.display = 'block';
+            return false;
+        } else {
+            userRole.parentElement.classList.remove('error');
             errorElement.style.display = 'none';
             return true;
         }
@@ -127,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             fullName: fullName.value.trim(),
             email: schoolEmail.value.trim(),
+            role: userRole.value.trim(),
             password: password.value
         };
 
@@ -136,9 +158,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Simulate API call
         setTimeout(() => {
-            // Store user info in sessionStorage
+            // Clear any previous login session
+            sessionStorage.removeItem('isLoggedIn');
+            
+            // Store registration info in sessionStorage
             sessionStorage.setItem('userFullName', formData.fullName);
             sessionStorage.setItem('userEmail', formData.email);
+            sessionStorage.setItem('userRole', formData.role);
             sessionStorage.setItem('registrationDate', new Date().toISOString());
             
             // Redirect to status page

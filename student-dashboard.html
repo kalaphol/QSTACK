@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCTU E-Library - Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="logo-img">
+                </div>
+            </div>
+            <div class="university-name">
+                <div class="main-name">Ghana Communication Technology University</div>
+                <div class="sub-name">(GCTU)</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="student-dashboard.html" class="nav-item active">Dashboard</a>
+            <a href="student-dashboard.html" class="nav-item">My Books</a>
+            <a href="settings.html" class="nav-item">Settings</a>
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Student</span>
+            </div>
+            <button id="logout-btn" class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Student Dashboard</h1>
+            <div class="user-info">Welcome Back!</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <!-- Quick Stats Section -->
+        <section class="stats-section">
+            <div class="section-header">
+                <h2>Your Statistics</h2>
+            </div>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-label">Books Borrowed</div>
+                    <div class="stat-number" id="books-borrowed">5</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Books Due Soon</div>
+                    <div class="stat-number pending" id="books-due">2</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Reading Points</div>
+                    <div class="stat-number approved" id="reading-points">450</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Books Section -->
+        <section class="requests-section">
+            <div class="section-header">
+                <h2>My Borrowed Books</h2>
+            </div>
+            <div class="requests-table-container">
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Borrowed Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="books-table-body">
+                        <tr>
+                            <td>Introduction to Computer Science</td>
+                            <td>David Evan</td>
+                            <td>10/01/25</td>
+                            <td>24/01/25</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Data Structures and Algorithms</td>
+                            <td>Thomas Cormen</td>
+                            <td>15/12/24</td>
+                            <td>29/01/25</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Web Development Fundamentals</td>
+                            <td>Jon Duckett</td>
+                            <td>02/01/25</td>
+                            <td>16/01/25</td>
+                            <td><span class="status-badge status-pending">Due Soon</span></td>
+                        </tr>
+                        <tr>
+                            <td>The Art of Programming</td>
+                            <td>Donald Knuth</td>
+                            <td>20/12/24</td>
+                            <td>03/01/25</td>
+                            <td><span class="status-badge status-rejected">Overdue</span></td>
+                        </tr>
+                        <tr>
+                            <td>Advanced Database Systems</td>
+                            <td>Ramakrishnan</td>
+                            <td>08/01/25</td>
+                            <td>22/01/25</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Quick Actions Section -->
+        <section class="actions-section">
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn search-books">
+                    <i class="fas fa-search"></i> Search Books
+                </button>
+                <button class="action-btn renew-book">
+                    <i class="fas fa-redo"></i> Renew Books
+                </button>
+                <button class="action-btn reserve-book">
+                    <i class="fas fa-bookmark"></i> Reserve Book
+                </button>
+            </div>
+        </section>
+
+        <!-- Notifications Section -->
+        <section class="notifications-section">
+            <div class="section-header">
+                <h2>Recent Notifications</h2>
+            </div>
+            <div class="notifications-list">
+                <div class="notification-item">
+                    <i class="fas fa-info-circle notification-icon"></i>
+                    <div class="notification-content">
+                        <p class="notification-title">Book Due Soon</p>
+                        <p class="notification-message">"Web Development Fundamentals" is due on 16/01/25</p>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <i class="fas fa-exclamation-circle notification-icon warning"></i>
+                    <div class="notification-content">
+                        <p class="notification-title">Overdue Book</p>
+                        <p class="notification-message">"The Art of Programming" was due on 03/01/25. Please return it soon.</p>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <i class="fas fa-check-circle notification-icon success"></i>
+                    <div class="notification-content">
+                        <p class="notification-title">Book Renewed</p>
+                        <p class="notification-message">"Advanced Database Systems" has been renewed successfully.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-image"> 
+                </div>
+            </div>
+            <div class="footer-text">
+                ©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Action Modal -->
+    <div class="modal" id="action-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Action</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-message">
+                Action completed successfully!
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn confirm-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="student-dashboard.js"></script>
+    <script src="logout.js"></script>
+</body>
+</html>

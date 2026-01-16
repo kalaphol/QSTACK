@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - GCTU Library Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="logo-img">
+                </div>
+            </div>
+            <div class="university-name">
+                <div class="main-name">Ghana Communication Technology University</div>
+                <div class="sub-name">(GCTU)</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="staff-dashboard.html" class="nav-item">Dashboard</a>
+            <a href="reports.html" class="nav-item">Reports</a>
+            <a href="users.html" class="nav-item active">Users</a>
+            <a href="settings.html" class="nav-item">Settings</a>
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Library Admin</span>
+            </div>
+            <button id="logout-btn" class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>User Management</h1>
+            <div class="user-info">Manage System Users</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <!-- User Statistics -->
+        <section class="stats-section">
+            <div class="section-header">
+                <h2>User Statistics</h2>
+            </div>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-number" id="total-users">1,245</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Users</div>
+                    <div class="stat-number approved" id="active-users">1,198</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Suspended Users</div>
+                    <div class="stat-number pending" id="suspended-users">47</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users List Section -->
+        <section class="requests-section">
+            <div class="section-header">
+                <h2>All Users</h2>
+                <button class="add-user-btn">
+                    <i class="fas fa-user-plus"></i> Add New User
+                </button>
+            </div>
+            <div class="filter-section">
+                <input type="text" id="search-users" class="search-input" placeholder="Search users by name or email...">
+                <select id="role-filter" class="filter-select">
+                    <option value="">All Roles</option>
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                </select>
+                <select id="status-filter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="suspended">Suspended</option>
+                </select>
+            </div>
+            <div class="requests-table-container">
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <tr>
+                            <td>U001</td>
+                            <td>John Doe</td>
+                            <td>john.doe@gctu.edu.gh</td>
+                            <td><span style="background-color: #3498db; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">Student</span></td>
+                            <td>10/01/25</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Suspend"><i class="fas fa-ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U002</td>
+                            <td>Sarah Johnson</td>
+                            <td>sarah.johnson@gctu.edu.gh</td>
+                            <td><span style="background-color: #f39c12; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">Staff</span></td>
+                            <td>05/01/25</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Suspend"><i class="fas fa-ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U003</td>
+                            <td>Michael Smith</td>
+                            <td>michael.smith@gctu.edu.gh</td>
+                            <td><span style="background-color: #3498db; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">Student</span></td>
+                            <td>15/12/24</td>
+                            <td><span class="status-badge status-rejected">Suspended</span></td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U004</td>
+                            <td>Emily Brown</td>
+                            <td>emily.brown@gctu.edu.gh</td>
+                            <td><span style="background-color: #3498db; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">Student</span></td>
+                            <td>20/12/24</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Suspend"><i class="fas fa-ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U005</td>
+                            <td>David Wilson</td>
+                            <td>david.wilson@gctu.edu.gh</td>
+                            <td><span style="background-color: #f39c12; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">Staff</span></td>
+                            <td>28/11/24</td>
+                            <td><span class="status-badge status-approved">Active</span></td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Suspend"><i class="fas fa-ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-image"> 
+                </div>
+            </div>
+            <div class="footer-text">
+                ©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Action Modal -->
+    <div class="modal" id="action-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Action</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-message">
+                Action completed successfully!
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn confirm-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="users.js"></script>
+    <script src="logout.js"></script>
+</body>
+</html>

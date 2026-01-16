@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - GCTU Library Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="logo-img">
+                </div>
+            </div>
+            <div class="university-name">
+                <div class="main-name">Ghana Communication Technology University</div>
+                <div class="sub-name">(GCTU)</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="staff-dashboard.html" class="nav-item">Dashboard</a>
+            <a href="reports.html" class="nav-item">Reports</a>
+            <a href="users.html" class="nav-item">Users</a>
+            <a href="settings.html" class="nav-item active">Settings</a>
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Library Admin</span>
+            </div>
+            <button id="logout-btn" class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Settings</h1>
+            <div class="user-info">Configure System Settings</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <div class="settings-container">
+            <!-- General Settings Section -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> General Settings</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="setting-item">
+                        <label>Library Name</label>
+                        <input type="text" value="GCTU E-Library" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Library Email</label>
+                        <input type="email" value="library@gctu.edu.gh" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Library Phone</label>
+                        <input type="tel" value="+233 XXX XXX XXX" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Operating Hours</label>
+                        <input type="text" value="8:00 AM - 6:00 PM" class="setting-input">
+                    </div>
+                    <button class="save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Book Management Settings -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Book Management</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="setting-item">
+                        <label>Max Books per Student</label>
+                        <input type="number" value="5" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Borrowing Duration (Days)</label>
+                        <input type="number" value="14" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Renewal Limit</label>
+                        <input type="number" value="3" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>Late Fee per Day (GHS)</label>
+                        <input type="number" value="0.50" class="setting-input" step="0.01">
+                    </div>
+                    <button class="save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Security Settings -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="two-factor" checked>
+                        <label for="two-factor">Enable Two-Factor Authentication</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="ssl" checked>
+                        <label for="ssl">Require HTTPS Connection</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="session" checked>
+                        <label for="session">Auto-Logout after 30 minutes</label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Password Policy</label>
+                        <select class="setting-input">
+                            <option>Strong (Recommended)</option>
+                            <option>Medium</option>
+                            <option>Weak</option>
+                        </select>
+                    </div>
+                    <button class="save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Email Settings -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelope"></i> Email Settings</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="email-notification" checked>
+                        <label for="email-notification">Send Email Notifications</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="due-reminder" checked>
+                        <label for="due-reminder">Send Due Date Reminders</label>
+                    </div>
+                    <div class="setting-item checkbox">
+                        <input type="checkbox" id="registration-email" checked>
+                        <label for="registration-email">Send Registration Confirmation Emails</label>
+                    </div>
+                    <div class="setting-item">
+                        <label>SMTP Server</label>
+                        <input type="text" value="smtp.gmail.com" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>SMTP Port</label>
+                        <input type="number" value="587" class="setting-input">
+                    </div>
+                    <button class="save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </section>
+
+            <!-- Backup & Maintenance -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-database"></i> Backup & Maintenance</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="backup-info">
+                        <p><strong>Last Backup:</strong> 15/01/25 at 2:30 AM</p>
+                        <p><strong>Backup Size:</strong> 256 MB</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="backup-btn"><i class="fas fa-download"></i> Download Backup</button>
+                        <button class="backup-btn backup-now"><i class="fas fa-sync"></i> Backup Now</button>
+                        <button class="backup-btn danger"><i class="fas fa-trash"></i> Clear Cache</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Information -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-info-circle"></i> System Information</h2>
+                </div>
+                <div class="settings-content info-grid">
+                    <div class="info-item">
+                        <label>System Version</label>
+                        <p>1.0.0</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Last Updated</label>
+                        <p>15/01/25</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Database Size</label>
+                        <p>512 MB</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Uptime</label>
+                        <p>45 days, 3 hours</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-image"> 
+                </div>
+            </div>
+            <div class="footer-text">
+                ©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Success</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-check-circle" style="font-size: 60px; color: #27ae60; margin-bottom: 15px;"></i>
+                <p id="modal-message">Settings have been saved successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn confirm-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

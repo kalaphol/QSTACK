@@ -48,24 +48,46 @@ document.addEventListener('DOMContentLoaded', function() {
         errorModal.classList.add('show');
     }
 
+    // Default staff account for testing
+    const DEFAULT_STAFF_EMAIL = 'staff@gctu.edu.gh';
+    const DEFAULT_STAFF_PASSWORD = 'Staff@123';
+
     // Simulate login process
     function simulateLogin() {
         const email = loginEmail.value;
         const password = loginPassword.value;
 
+        // Validate credentials
+        if (!email || !password) {
+            showError('Please enter both email and password');
+            return;
+        }
+
         // Simulate API call with timeout
         loginForm.style.opacity = '0.6';
-        loginForm.style.pointerEvents = 'none';
+        loginForm.style.pointerPoints = 'none';
 
         setTimeout(() => {
-            // Simulate successful login
-            if (email && password) {
-                // Store user info in sessionStorage
-                sessionStorage.setItem('userEmail', email);
-                sessionStorage.setItem('isLoggedIn', 'true');
-                
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
+            let userRole = 'student';
+
+            // Check if using default staff account
+            if (email === DEFAULT_STAFF_EMAIL && password === DEFAULT_STAFF_PASSWORD) {
+                userRole = 'staff';
+            } else {
+                // Retrieve role from registration (in real app, this would come from backend)
+                userRole = sessionStorage.getItem('userRole') || 'student';
+            }
+            
+            // Store user info in sessionStorage
+            sessionStorage.setItem('userEmail', email);
+            sessionStorage.setItem('userRole', userRole);
+            sessionStorage.setItem('isLoggedIn', 'true');
+            
+            // Redirect based on role
+            if (userRole === 'staff') {
+                window.location.href = 'staff-dashboard.html';
+            } else {
+                window.location.href = 'student-dashboard.html';
             }
         }, 1500);
     }

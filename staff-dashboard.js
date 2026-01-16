@@ -1,5 +1,27 @@
 // Dashboard Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in and is staff
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    const userEmail = sessionStorage.getItem('userEmail');
+    const userRole = sessionStorage.getItem('userRole');
+
+    // If user is not logged in or not staff, redirect to appropriate page
+    if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    if (userRole !== 'staff') {
+        window.location.href = 'student-dashboard.html';
+        return;
+    }
+
+    // Update user profile with logged-in user's email
+    const userProfileSpan = document.querySelector('.user-profile span');
+    if (userProfileSpan && userEmail) {
+        userProfileSpan.textContent = userEmail.split('@')[0];
+    }
+
     const approveAllBtn = document.getElementById('approve-all-btn');
     const generateReportBtn = document.getElementById('generate-report-btn');
     const exportDataBtn = document.getElementById('export-data-btn');
