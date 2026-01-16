@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Connection Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .test-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .test-link:hover {
+            background: #0052a3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>GCTU E-Library - Page Connection Tester</h1>
+    
+    <div class="test-section">
+        <h2>Public Pages</h2>
+        <a href="index.html" class="test-link">Home</a>
+        <a href="login.html" class="test-link">Login</a>
+        <a href="registration.html" class="test-link">Registration</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Dashboard Pages (Requires Session)</h2>
+        <p>⚠️ First login or register to access these pages:</p>
+        <a href="staff-dashboard.html" class="test-link">Staff Dashboard</a>
+        <a href="student-dashboard.html" class="test-link">Student Dashboard</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Admin Pages (Staff Only)</h2>
+        <a href="reports.html" class="test-link">Reports</a>
+        <a href="users.html" class="test-link">Users</a>
+        <a href="settings.html" class="test-link">Settings</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Links Functionality</h2>
+        <button onclick="testNavigation()" class="test-link">Test Page Links</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function testNavigation() {
+            const result = document.getElementById('result');
+            result.innerHTML = '<p>Testing page connections...</p>';
+            
+            // List of pages to check
+            const pages = [
+                'index.html',
+                'login.html',
+                'registration.html',
+                'status.html',
+                'staff-dashboard.html',
+                'student-dashboard.html',
+                'reports.html',
+                'users.html',
+                'settings.html'
+            ];
+            
+            let successCount = 0;
+            let failCount = 0;
+            
+            Promise.all(pages.map(page => 
+                fetch(page).then(response => {
+                    if (response.ok) {
+                        successCount++;
+                        return `✅ ${page}: OK`;
+                    } else {
+                        failCount++;
+                        return `❌ ${page}: ${response.status}`;
+                    }
+                }).catch(error => {
+                    failCount++;
+                    return `❌ ${page}: Not Found`;
+                })
+            )).then(results => {
+                const resultClass = failCount === 0 ? 'success' : 'error';
+                result.innerHTML = `
+                    <div class="result ${resultClass}">
+                        <h3>Test Results</h3>
+                        <p><strong>Pages OK: ${successCount}</strong></p>
+                        <p><strong>Pages Error: ${failCount}</strong></p>
+                        <hr>
+                        ${results.join('<br>')}
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

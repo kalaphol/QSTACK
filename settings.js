@@ -2,15 +2,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const userRole = sessionStorage.getItem('userRole');
+    const userEmail = sessionStorage.getItem('userEmail');
     
     if (!isLoggedIn || isLoggedIn === 'false') {
         window.location.href = 'login.html';
         return;
     }
     
-    if (userRole !== 'staff') {
-        window.location.href = 'student-dashboard.html';
-        return;
+    // Settings page is accessible by both staff and students
+    // Show appropriate navigation based on role
+    const staffNavItems = document.querySelectorAll('.staff-nav');
+    const studentNavItems = document.querySelectorAll('.student-nav');
+    const userProfileSpan = document.querySelector('.user-profile span');
+    
+    if (userRole === 'staff') {
+        staffNavItems.forEach(item => item.style.display = '');
+        studentNavItems.forEach(item => item.style.display = 'none');
+        if (userProfileSpan && userEmail) {
+            userProfileSpan.textContent = userEmail.split('@')[0];
+        }
+    } else {
+        staffNavItems.forEach(item => item.style.display = 'none');
+        studentNavItems.forEach(item => item.style.display = '');
+        if (userProfileSpan && userEmail) {
+            userProfileSpan.textContent = userEmail.split('@')[0];
+        }
     }
     
     initializeSettings();
@@ -43,8 +59,7 @@ function initializeSettings() {
     closeModal.addEventListener('click', closeSuccessModal);
     confirmBtn.addEventListener('click', closeSuccessModal);
     
-    // Logout button
-    logoutBtn.addEventListener('click', logout);
+    // Note: Logout button is handled by logout.js
 }
 
 // Save settings for a specific section
@@ -129,14 +144,6 @@ function handleBackupAction(btn) {
 function closeSuccessModal() {
     const modal = document.getElementById('success-modal');
     modal.style.display = 'none';
-}
-
-// Logout function
-function logout() {
-    if (confirm('Are you sure you want to logout?')) {
-        sessionStorage.clear();
-        window.location.href = 'login.html';
-    }
 }
 
 // Close modal when clicking outside
