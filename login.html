@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCTU E-Library Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -42,16 +41,14 @@
                         </button>
                     </div>
                     
-                    <div class="form-group">
-                        <button type="submit" class="login-btn">
-                            Login
-                           
-                        </button>
-                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
                 </form>
                 
                 <div class="login-footer">
-                    <p>Don't have an account? <a href="index.html">Register Now</a></p>
+                    <p>Don't have an account? <a href="registration.html">Register Now</a></p>
                 </div>
             </div>
         </main>
@@ -61,12 +58,10 @@
             <div class="footer-divider"></div>
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/gctu_logo.jpg" alt="GCTU Logo" class="footer-logo-img">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-img">
                 </div>
-                
-                <!-- Copyright text -->
                 <div class="footer-text">
-                    <p> 2023 All Rights Reserved.Ghana Communication Technology University (GCTU)</p>
+                    <p>©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)</p>
                 </div>
             </div>
         </footer>
@@ -76,14 +71,12 @@
     <div class="modal" id="errorModal">
         <div class="modal-content">
             <div class="modal-header">
-                <i class="fas fa-exclamation-circle error-icon"></i>
                 <h2>Login Error</h2>
+                <button class="close-modal" id="closeErrorModal">&times;</button>
             </div>
             <div class="modal-body">
+                <i class="fas fa-exclamation-circle error-icon"></i>
                 <p id="errorMessage">Invalid email or password. Please try again.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn" id="closeErrorModal">OK</button>
             </div>
         </div>
     </div>

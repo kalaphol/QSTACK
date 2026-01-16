@@ -3,103 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCTU E-Library Registration</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GCTU E-Library - Home</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .landing-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 50px 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .landing-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .landing-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .landing-content h1 {
+            color: #0d1b46;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .landing-content p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .landing-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .landing-btn {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .landing-btn i {
+            font-size: 18px;
+        }
+
+        .btn-dashboard {
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+        }
+
+        .btn-dashboard:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #27ae60, #219653);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #8e44ad, #7d3c98);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(142, 68, 173, 0.3);
+        }
+
+        .landing-footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .landing-content {
+                padding: 35px 25px;
+            }
+
+            .landing-content h1 {
+                font-size: 28px;
+            }
+
+            .landing-content p {
+                font-size: 16px;
+            }
+
+            .landing-btn {
+                padding: 14px 25px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-content {
+                padding: 25px 20px;
+            }
+
+            .landing-content h1 {
+                font-size: 24px;
+            }
+
+            .landing-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .landing-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <div class="logo-container">
-                <div class="university-logo">
-                    <img src="images/gctu logo.png" alt="GCTU Logo" class="gctu-logo-img">
-                </div>
-                <div class="title-container">
-                    <h1 class="title">
-                        <span class="title-line">E-Library</span>
-                        <span class="title-line">Registration</span>
-                        <span class="title-line">Form</span>
-                    </h1>
-                </div>
+    <div class="landing-container">
+        <div class="landing-content">
+            <div class="landing-logo">
+                <img src="images/gctu logo.png" alt="GCTU Logo">
             </div>
-        </header>
+            <h1>GCTU E-Library</h1>
+            <p>Welcome to the Ghana Communication Technology University E-Library System. Select an option below to get started.</p>
+            
+            <div class="landing-buttons">
+                <a href="dashboard.html" class="landing-btn btn-dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Go to Dashboard
+                </a>
+                <a href="registration.html" class="landing-btn btn-register">
+                    <i class="fas fa-user-plus"></i>
+                    Register Now
+                </a>
+                <a href="login.html" class="landing-btn btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+            </div>
 
-        <!-- Main Form Card -->
-        <main class="main-content">
-            <div class="form-card">
-                <form id="registrationForm" class="registration-form">
-                    <div class="form-group">
-                        <input type="text" id="fullName" placeholder="Full Name" required>
-                        <i class="fas fa-user input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="schoolEmail" placeholder="School Email" required>
-                        <i class="fas fa-envelope input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="password" id="password" placeholder="Password" required>
-                        <i class="fas fa-lock input-icon"></i>
-                        <button type="button" class="toggle-password" id="togglePassword" title="Toggle password visibility">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-                        <i class="fas fa-lock input-icon"></i>
-                        <button type="button" class="toggle-password" id="toggleConfirmPassword" title="Toggle password visibility">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="form-group">
-                        <button type="submit" class="register-btn">
-                            Register
-                           
-                        </button>
-                    </div>
-                </form>
-                
-                <div class="form-footer">
-                    <p>Already have an account? <a href="login.html" >Sign In</a></p>
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer Section -->
-        <footer class="footer">
-            <div class="footer-divider"></div>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="images/gctu_logo.jpg" alt="GCTU Logo" class="footer-logo-img">
-                </div>
-                <div class="footer-text">
-                    <p> 2023 All Rights Reserved. Ghana Communication Technology University (GCTU)</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fas fa-check-circle success-icon"></i>
-                <h2>Registration Successful!</h2>
-            </div>
-            <div class="modal-body">
-                <p>Your GCTU E-Library account has been created successfully.</p>
-                <p>Please check your school email for verification instructions.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn" id="closeModal">Continue</button>
+            <div class="landing-footer">
+                <p>©2023 Ghana Communication Technology University (GCTU)</p>
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>

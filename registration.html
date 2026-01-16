@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCTU E-Library Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="university-logo">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="gctu-logo-img">
+                </div>
+                <div class="title-container">
+                    <h1 class="title">
+                        <span class="title-line">E-Library</span>
+                        <span class="title-line">Registration</span>
+                        <span class="title-line">Form</span>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Form Card -->
+        <main class="main-content">
+            <div class="form-card">
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-group">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <i class="fas fa-user input-icon"></i>
+                        <span class="error-message" id="fullNameError">Full name is required</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="schoolEmail" placeholder="Index Number or School Email" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                        <span class="error-message" id="emailError">Valid email is required</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password" id="togglePassword" title="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <span class="error-message" id="passwordError">Password must be at least 6 characters</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password" id="toggleConfirmPassword" title="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <span class="error-message" id="confirmPasswordError">Passwords do not match</span>
+                    </div>
+                    
+                    <button type="submit" class="register-btn">
+                        <i class="fas fa-user-plus btn-icon"></i>
+                        Register
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a href="login.html">Login Here</a></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-divider"></div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-text">
+                    <p>©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registration Error</h2>
+                <button class="close-modal" id="closeErrorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                <p id="errorMessage">An error occurred during registration. Please try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

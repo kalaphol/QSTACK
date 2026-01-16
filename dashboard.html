@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCTU Library Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="logo-img">
+                </div>
+            </div>
+            <div class="university-name">
+                <div class="main-name">Ghana Communication Technology University</div>
+                <div class="sub-name">(GCTU)</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-item active">Dashboard</a>
+            <a href="#" class="nav-item">Reports</a>
+            <a href="#" class="nav-item">Users</a>
+            <a href="#" class="nav-item">Settings</a>
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Library Admin</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>GCTU Library Admin Dashboard</h1>
+            <div class="user-info">Library Admin</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <!-- Registration Statistics Section -->
+        <section class="stats-section">
+            <div class="section-header">
+                <h2>Registration Statistics</h2>
+            </div>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-label">Total</div>
+                    <div class="stat-number" id="total-registrations">1,245</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Pending</div>
+                    <div class="stat-number pending" id="pending-registrations">47</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Approved</div>
+                    <div class="stat-number approved" id="approved-registrations">1,198</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Registration Requests -->
+        <section class="requests-section">
+            <div class="section-header">
+                <h2>Recent Registration Requests</h2>
+            </div>
+            <div class="requests-table-container">
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requests-table-body">
+                        <tr>
+                            <td>D01</td>
+                            <td>John Doe</td>
+                            <td>01/10/25</td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Approve"><i class="fas fa-check"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Reject"><i class="fas fa-times"></i></button>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>D02</td>
+                            <td>Prince Adams</td>
+                            <td>15/08/25</td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Approve"><i class="fas fa-check"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Reject"><i class="fas fa-times"></i></button>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                        </tr>
+                        <tr>
+                            <td>D03</td>
+                            <td>Edmund Pato</td>
+                            <td>25/07/25</td>
+                            <td>
+                                <div class="action-buttons-cell">
+                                    <button class="action-btn-table approve-btn" title="Approve"><i class="fas fa-check"></i></button>
+                                    <button class="action-btn-table reject-btn" title="Reject"><i class="fas fa-times"></i></button>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-rejected">Rejected</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Quick Actions Section -->
+        <section class="actions-section">
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn approve-all" id="approve-all-btn">
+                    <i class="fas fa-check-circle"></i> Approve All Pending
+                </button>
+                <button class="action-btn generate-report" id="generate-report-btn">
+                    <i class="fas fa-chart-bar"></i> Generate Report
+                </button>
+                <button class="action-btn export-data" id="export-data-btn">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-circle">
+                    <img src="images/gctu logo.png" alt="GCTU Logo" class="footer-logo-image"> 
+                </div>
+            </div>
+            <div class="footer-text">
+                ©2023 All Rights Reserved. Ghana Communication Technology University (GCTU)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-message">
+                Are you sure you want to perform this action?
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn">Cancel</button>
+                <button class="modal-btn confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="staff-dashboard.js"></script>
+</body>
+</html>

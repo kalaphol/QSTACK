@@ -1,190 +1,84 @@
-// API Base URL
-const API_URL = 'http://localhost:8000/backend/api';
+// Login Form Validation and Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+    const errorModal = document.getElementById('errorModal');
+    const closeErrorModal = document.getElementById('closeErrorModal');
 
-// DOM Elements
-const loginForm = document.getElementById('loginForm');
-const loginEmailInput = document.getElementById('loginEmail');
-const loginPasswordInput = document.getElementById('loginPassword');
-const toggleLoginPasswordBtn = document.getElementById('toggleLoginPassword');
-const errorModal = document.getElementById('errorModal');
-const closeErrorModalBtn = document.getElementById('closeErrorModal');
-const errorMessage = document.getElementById('errorMessage');
-
-// Email validation regex - same as registration
-const emailRegex = /^[a-zA-Z0-9._%+-]+@(gctu\.edu\.gh|students\.gctu\.edu\.gh)$/i;
-
-// Toggle password visibility
-function togglePasswordVisibility(inputElement, toggleBtn) {
-    const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
-    inputElement.setAttribute('type', type);
-    
-    // Toggle eye icon
-    const eyeIcon = toggleBtn.querySelector('i');
-    if (type === 'text') {
-        eyeIcon.classList.remove('fa-eye');
-        eyeIcon.classList.add('fa-eye-slash');
-    } else {
-        eyeIcon.classList.remove('fa-eye-slash');
-        eyeIcon.classList.add('fa-eye');
-    }
-}
-
-// Validate school email
-function validateSchoolEmail(email) {
-    return emailRegex.test(email.trim());
-}
-
-// Show error message
-function showError(inputElement, message) {
-    const formGroup = inputElement.parentElement;
-    formGroup.classList.add('error');
-    
-    // Remove existing error message if any
-    let errorMessage = formGroup.querySelector('.error-message');
-    if (!errorMessage) {
-        errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        formGroup.appendChild(errorMessage);
-    }
-    errorMessage.textContent = message;
-}
-
-// Clear error message
-function clearError(inputElement) {
-    const formGroup = inputElement.parentElement;
-    formGroup.classList.remove('error');
-    
-    const errorMessage = formGroup.querySelector('.error-message');
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-}
-
-// Show modal with custom error message
-function showErrorModal(message) {
-    errorMessage.textContent = message;
-    errorModal.style.display = 'flex';
-}
-
-// Close error modal
-function closeErrorModalFn() {
-    errorModal.style.display = 'none';
-}
-
-// Form submission handler
-async function handleLoginSubmit(event) {
-    event.preventDefault();
-    
-    // Clear all previous errors
-    const formGroups = document.querySelectorAll('.form-group');
-    formGroups.forEach(group => {
-        group.classList.remove('error');
-        const errorMsg = group.querySelector('.error-message');
-        if (errorMsg) errorMsg.remove();
+    // Toggle password visibility
+    toggleLoginPassword.addEventListener('click', function(e) {
+        e.preventDefault();
+        const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        loginPassword.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
     });
-    
-    // Get form values
-    const schoolEmail = loginEmailInput.value.trim();
-    const password = loginPasswordInput.value;
-    
-    let isValid = true;
-    
-    // Validate school email
-    if (!schoolEmail) {
-        showError(loginEmailInput, 'School email is required');
-        isValid = false;
-    } else if (!validateSchoolEmail(schoolEmail)) {
-        showError(loginEmailInput, 'Please enter a valid GCTU school email');
-        isValid = false;
-    }
-    
-    // Validate password
-    if (!password) {
-        showError(loginPasswordInput, 'Password is required');
-        isValid = false;
-    }
-    
-    // If form is not valid, stop here
-    if (!isValid) return;
-    
-    // Disable submit button and show loading state
-    const submitBtn = loginForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Logging in...';
-    
-    try {
-        // Send login request to backend
-        const response = await fetch(`${API_URL}/login.php`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: schoolEmail,
-                password: password
-            })
-        });
+
+    // Form submission
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        const data = await response.json();
-        
-        if (data.success) {
-            // Store user info in sessionStorage (optional)
-            sessionStorage.setItem('user', JSON.stringify(data.data));
-            
-            // Redirect to dashboard or home page
-            window.location.href = 'dashboard.html';
-        } else {
-            // Show error in modal
-            showErrorModal(data.message);
+        // Validate email format
+        if (!isValidEmail(loginEmail.value)) {
+            showError('Please enter a valid email address');
+            return;
         }
-    } catch (error) {
-        console.error('Login error:', error);
-        showErrorModal('An error occurred. Please try again.');
-    } finally {
-        // Re-enable submit button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }
-}
 
-// Initialize the login page
-function initLogin() {
-    // Set up event listeners
-    toggleLoginPasswordBtn.addEventListener('click', () => {
-        togglePasswordVisibility(loginPasswordInput, toggleLoginPasswordBtn);
+        // Validate password
+        if (loginPassword.value.length < 6) {
+            showError('Password must be at least 6 characters long');
+            return;
+        }
+
+        // Simulate login - in real app, this would call a backend API
+        simulateLogin();
     });
-    
-    loginForm.addEventListener('submit', handleLoginSubmit);
-    
-    closeErrorModalBtn.addEventListener('click', function() {
-        closeErrorModalFn();
-        // Clear password field on error
-        loginPasswordInput.value = '';
-        loginPasswordInput.focus();
+
+    // Email validation function
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Show error modal
+    function showError(message) {
+        document.getElementById('errorMessage').textContent = message;
+        errorModal.classList.add('show');
+    }
+
+    // Simulate login process
+    function simulateLogin() {
+        const email = loginEmail.value;
+        const password = loginPassword.value;
+
+        // Simulate API call with timeout
+        loginForm.style.opacity = '0.6';
+        loginForm.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+            // Simulate successful login
+            if (email && password) {
+                // Store user info in sessionStorage
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('isLoggedIn', 'true');
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }
+        }, 1500);
+    }
+
+    // Close error modal
+    closeErrorModal.addEventListener('click', function() {
+        errorModal.classList.remove('show');
     });
-    
-    // Close modal when clicking outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target === errorModal) {
-            closeErrorModalFn();
-            loginPasswordInput.value = '';
-            loginPasswordInput.focus();
+
+    // Close modal when clicking outside
+    errorModal.addEventListener('click', function(e) {
+        if (e.target === errorModal) {
+            errorModal.classList.remove('show');
         }
     });
-    
-    // Set up input validation
-    loginEmailInput.addEventListener('input', function() {
-        clearError(this);
-    });
-    
-    loginPasswordInput.addEventListener('input', function() {
-        clearError(this);
-    });
-    
-    // Focus on email input field
-    loginEmailInput.focus();
-}
-
-// Initialize the login page when DOM is loaded
-document.addEventListener('DOMContentLoaded', initLogin);
+});
